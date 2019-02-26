@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MovementTest : MonoBehaviour {
 
+    public Camera cam;
+    public float speed;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,19 +16,19 @@ public class MovementTest : MonoBehaviour {
 	void Update () {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += new Vector3(-1, 0, 0); 
+            transform.position += cam.transform.forward * speed; 
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position += new Vector3(1, 0, 0);
+            transform.position -= cam.transform.forward * speed;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += new Vector3(0, 0, -1);
+            transform.position -= cam.transform.right * speed;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += new Vector3(0, 0, 1);
+            transform.position += cam.transform.right * speed;
         }
     }
 }

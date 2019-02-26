@@ -20,6 +20,7 @@ public class ItemPickup : MonoBehaviour {
             invItem.Add(other.gameObject);
             other.gameObject.transform.parent = this.gameObject.transform;
             other.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0,2,0);
+            other.GetComponent<ItemRenamer>().connected = true;
         }
     }
 }
