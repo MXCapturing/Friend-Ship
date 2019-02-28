@@ -31,5 +31,7 @@ public class ItemRenamer : MonoBehaviour {
     {
         _rb.useGravity = false;
         _col.isTrigger = true;
+        _rb.velocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
     }
 }
