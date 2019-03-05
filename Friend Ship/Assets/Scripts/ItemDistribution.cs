@@ -9,22 +9,20 @@ public enum ItemSpawn
     nails = 2,
     steeringwheel = 3,
     paint = 4,
-    hammer = 5,
-    flamethrower = 6,
-    sand = 7,
-    raft = 8,
-    fabric = 9,
-    characters = 10
+    flamethrower = 5,
+    sand = 6,
+    raft = 7,
+    fabric = 8
 }
 
 public class ItemDistribution : MonoBehaviour {
 
-    public GameObject cube, sewing, nails, steeringWheel, paint, hammer, flameThrower, sand, raft, fabric, p1, p2;
+    public GameObject cube, sewing, nails, steeringWheel, paint, flameThrower, sand, raft, fabric;
     public ItemSpawn itemSpawn;
 
     private int spawn;
 
-    public Vector3[] timberSpawn, sewingMSpawn, nailSpawn, steeringSpawn, paintSpawn, hammerSpawn, flameSpawn, sandSpawn, raftSpawn, fabricSpawn, p1Spawn, p2Spawn;
+    public Vector3[] timberSpawn, sewingMSpawn, nailSpawn, steeringSpawn, paintSpawn, flameSpawn, sandSpawn, raftSpawn, fabricSpawn;
 
 	// Use this for initialization
 	void Start () {
@@ -103,13 +101,6 @@ public class ItemDistribution : MonoBehaviour {
                 Spawner();
                 break;
 
-            case ItemSpawn.hammer:
-                spawn = Random.Range(0, hammerSpawn.Length);
-                Instantiate(hammer, hammerSpawn[spawn], Quaternion.identity);
-                itemSpawn++;
-                Spawner();
-                break;
-
             case ItemSpawn.flamethrower:
                 spawn = Random.Range(0, flameSpawn.Length);
                 Instantiate(flameThrower, flameSpawn[spawn], Quaternion.identity);
@@ -152,11 +143,6 @@ public class ItemDistribution : MonoBehaviour {
                 }
                 itemSpawn++;
                 Spawner();
-                break;
-
-            case ItemSpawn.characters:
-                Instantiate(p1, p1Spawn[0], Quaternion.identity);
-                Instantiate(p2, p2Spawn[0], Quaternion.identity);
                 break;
         }
     }

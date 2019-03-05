@@ -44,7 +44,7 @@ public class HammerPull : MonoBehaviour {
                 complete = true;
                 p1Pull.fillAmount = 1;
                 p2Pull.fillAmount = 1;
-                hammerPull.enabled = true;
+                hammerPull.SetTrigger("HammerGet");
             }
         }
         if (pulling == false)
