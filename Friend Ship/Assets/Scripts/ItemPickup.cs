@@ -8,7 +8,7 @@ public class ItemPickup : MonoBehaviour {
 
     public List<GameObject> invItem = new List<GameObject>();
 
-    public bool flameThrower = false, hammer = false;
+    public bool hammer = false;
 
     private void Start()
     {

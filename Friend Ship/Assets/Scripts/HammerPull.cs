@@ -8,49 +8,47 @@ public class HammerPull : MonoBehaviour {
     public bool pulling;
     public bool complete;
 
-    public Image p1Pull, p2Pull;
+    public Image p1Pull, p3Pull;
     public Animator hammerPull;
+
+    public GameObject p1Trig, p3Trig;
 
     private void Start()
     {
         hammerPull = gameObject.GetComponent<Animator>();
-    }
-
-    public void Pulling()
-    {
-        p1Pull.enabled = true;
-        p2Pull.enabled = true;
-        pulling = true;
+        p3Pull.fillAmount = 0;
+        p1Pull.fillAmount = 0;
     }
 
 	void Update () {
-		if(pulling == true)
-        {
+
             if (complete == false)
             {
-                p1Pull.fillAmount -= 0.002f;
-                p2Pull.fillAmount -= 0.002f;
+                p1Pull.fillAmount -= 0.001f;
+                p3Pull.fillAmount -= 0.001f;
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && p1Pull.enabled == true)
             {
-                p1Pull.fillAmount += 0.04f;
+                p1Pull.fillAmount += 0.06f;
             }
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.O) && p3Pull.enabled == true)
             {
-                p2Pull.fillAmount += 0.04f;
+                p3Pull.fillAmount += 0.06f;
             }
-            if(p1Pull.fillAmount == 1 && p2Pull.fillAmount == 1)
+            if(p1Pull.fillAmount >= 0.95f && p3Pull.fillAmount >= 0.95f)
             {
                 complete = true;
                 p1Pull.fillAmount = 1;
-                p2Pull.fillAmount = 1;
+                p3Pull.fillAmount = 1;
                 hammerPull.SetTrigger("HammerGet");
             }
-        }
-        if (pulling == false)
+            if(p1Pull.enabled == false)
         {
-            p1Pull.fillAmount = 0f;
-            p2Pull.fillAmount = 0f;
+            p1Pull.fillAmount = 0;
+        }
+            if(p3Pull.enabled == false)
+        {
+            p3Pull.fillAmount = 0;
         }
 	}
 
@@ -58,5 +56,10 @@ public class HammerPull : MonoBehaviour {
     {
         ItemPickup.instance.hammer = true;
         this.gameObject.SetActive(false);
+        Destroy(p1Pull);
+        Destroy(p3Pull);
+        Destroy(p1Trig);
+        Destroy(p3Trig);
+        Destroy(this.gameObject);
     }
 }
